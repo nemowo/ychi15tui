@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>just for ychi <3</title>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/m5VQQBwj/thumcat4.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #ffb6c1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Fuzzy Bubbles', cursive;
+      text-align: center;
+    }
+    h1 {
+      font-size: clamp(30px, 8vw, 48px);
+      color: #d6336c;
+      margin-bottom: 30px;
+      animation: pop 1s infinite alternate;
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes pop {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+    .main-btn {
+      padding: 15px 30px;
+      font-size: clamp(18px, 5vw, 24px);
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 10px;
+      z-index: 1;
+      font-family: 'Fuzzy Bubbles', cursive;
+    }
+    .main-btn:hover {
+      background: #ff1493;
+    }
+.popup {
+  position: fixed;
+  top: 50%; left: 50%;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  font-size: clamp(15px, 3.5vw, 20px);
+  color: #d6336c;
+  z-index: 5;
+  width: clamp(260px, 70%, 380px);
+  min-height: 220px;
+  line-height: 1.5;
+  font-family: 'Fuzzy Bubbles', cursive;
+  display: none;
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+    .popup.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      line-height: 30px;
+      text-align: center;
+    }
+    .popup .options {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+    .popup .opt-btn {
+      padding: 10px 20px;
+      font-size: clamp(16px, 4vw, 20px);
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: top 0.3s ease, left 0.3s ease;
+      font-family: 'Fuzzy Bubbles', cursive;
+      font-weight: bold;
+    }
+    .popup .opt-btn:hover {
+      background: #ff1493;
+    }
+    #noBtn {
+      transition: top 0.3s ease, left 0.3s ease;
+    }
+    .floating {
+      position: absolute;
+      opacity: 0.7;
+      z-index: 0;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
+    }
+    .signature {
+      position: fixed;
+      bottom: 5px;
+      right: 10px;
+      font-size: 14px;
+      color: #d6336c;
+      z-index: 2;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>Háp bi bớt đây Yến Chi &lt;3</h1>
+
+  <button class="main-btn" onclick="playMusic(); openPopup('guide', this)">Hướng dẫn sử dụng 💌</button>
+  <button class="main-btn" onclick="playMusic(); openPopup('gift', this)">Special Gift 🎁</button>
+
+  <div id="popup-guide" class="popup">
+    <strong>Hướng dẫn sử dụng🐺</strong><br>
+    <i>Vietnamese:</i>
+    Luôn hạnh phúc, vui vẻ và học giỏi. <br><br>
+    <i>English:</i>
+    Always be happy, joyful, and study well. <br>
+    <div style="margin-top:15px;">Quà xinh nhật bù, oke khum?</div>
+    <div class="options">
+      <button class="opt-btn" onclick="okGuide()">Oke</button>
+      <button class="opt-btn" id="noBtn" onclick="escapeBtn()">Khum!</button>
+    </div>
+  </div>
+
+  <div id="popup-gift" class="popup">
+    <button class="close-btn" onclick="closePopup('gift')">X</button>
+    <strong>1. Thông số kĩ thuật:</strong><br>
+    - Chiều cao: 167 cm<br>
+    - Trọng lượng: 53 kg<br>
+    - Chiều dài: 132 mm<br>
+    - Thời lượng: lên đến 2 giờ<br>
+    - Độ nhạy: 83,1 dB SPL/mW<br><br>
+    <strong>2. Đặc điểm nổi bật:</strong><br>
+    - Học giỏi<br>
+    - Chất lượng vượt trội<br>
+    - Thời lượng pin lâu<br>
+    - Tối ưu cho trải nghiệm thoải mái<br>
+    - Tâm lí<br>
+    - An toàn với chủ sở hữu<br><br>
+    <strong>3. Thông tin bảo hành:</strong> Bảo hành trọn đời<br>
+    <strong>4. Sản xuất tại:</strong> Việt Nam<br>
+    <strong>5.</strong> Liên hệ "ấy ấy" để nhận sản phẩm 😘
+  </div>
+
+  <div class="signature">this shit was made by Nem</div>
+
+  <audio id="bgMusic" loop>
+    <source src="https://files.catbox.moe/52cxnn.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById('bgMusic');
+    audio.volume = 0.2;
+    let popupBtnPos = {};
+
+    function playMusic() {
+      audio.play();
+    }
+
+    function openPopup(type, btn) {
+      let p = document.getElementById('popup-' + type);
+      let rectBtn = btn.getBoundingClientRect();
+      let centerBtnX = rectBtn.left + rectBtn.width / 2;
+      let centerBtnY = rectBtn.top + rectBtn.height / 2;
+
+      p.style.display = 'block';
+      p.style.transform = 'translate(-50%, -50%) scale(0.5)';
+      p.style.opacity = '0';
+      let rectPopup = p.getBoundingClientRect();
+      let centerPopupX = rectPopup.left + rectPopup.width / 2;
+      let centerPopupY = rectPopup.top + rectPopup.height / 2;
+
+      popupBtnPos = {
+        dx: centerBtnX - centerPopupX,
+        dy: centerBtnY - centerPopupY
+      };
+
+      p.style.transition = 'none';
+      p.style.transform = `translate(calc(-50% + ${popupBtnPos.dx}px), calc(-50% + ${popupBtnPos.dy}px)) scale(0.5)`;
+      p.style.opacity = '0';
+
+      setTimeout(() => {
+        p.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+        p.style.transform = 'translate(-50%, -50%) scale(1)';
+        p.style.opacity = '1';
+      }, 10);
+
+      if (type === 'guide') {
+        let noBtn = document.getElementById('noBtn');
+        noBtn.style.position = '';
+        noBtn.style.top = '';
+        noBtn.style.left = '';
+        noBtn.style.transform = '';
+      }
+    }
+
+    function closePopup(type) {
+      let p = document.getElementById('popup-' + type);
+      p.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      p.style.transform = `translate(calc(-50% + ${popupBtnPos.dx}px), calc(-50% + ${popupBtnPos.dy}px)) scale(0.5)`;
+      p.style.opacity = '0';
+      setTimeout(() => {
+        p.style.display = 'none';
+        p.style.transition = 'none';
+      }, 500);
+    }
+
+    function okGuide() {
+      closePopup('guide');
+    }
+
+let currentX = 0;
+let currentY = 0;
+
+function escapeBtn() {
+  let btn = document.getElementById('noBtn');
+  let okeBtn = document.querySelector('#popup-guide .opt-btn');
+  let popup = document.getElementById('popup-guide');
+
+  let rectPopup = popup.getBoundingClientRect();
+  let offsetParentRect = btn.offsetParent.getBoundingClientRect();
+
+  if (btn.style.position !== 'absolute') {
+      let rectBtn = btn.getBoundingClientRect();
+      btn.style.position = 'absolute';
+      btn.style.top = (rectBtn.top - offsetParentRect.top) + 'px';
+      btn.style.left = (rectBtn.left - offsetParentRect.left) + 'px';
+  }
+
+  let currentTop = parseFloat(btn.style.top);
+  let currentLeft = parseFloat(btn.style.left);
+
+  let tries = 0, newTop, newLeft, overlap, dist;
+
+  do {
+    let angle = Math.random() * 2 * Math.PI;
+    let moveDist = 100 + Math.random() * 50;
+
+    newTop = currentTop + moveDist * Math.sin(angle);
+    newLeft = currentLeft + moveDist * Math.cos(angle);
+
+    newTop = Math.max(0, Math.min(newTop, rectPopup.height - btn.offsetHeight));
+    newLeft = Math.max(0, Math.min(newLeft, rectPopup.width - btn.offsetWidth));
+
+    let okeRect = okeBtn.getBoundingClientRect();
+    let btnRect = {
+      top: newTop + offsetParentRect.top,
+      left: newLeft + offsetParentRect.left,
+      right: newLeft + offsetParentRect.left + btn.offsetWidth,
+      bottom: newTop + offsetParentRect.top + btn.offsetHeight
+    };
+
+    overlap = !(btnRect.right < okeRect.left ||
+                btnRect.left > okeRect.right ||
+                btnRect.bottom < okeRect.top ||
+                btnRect.top > okeRect.bottom);
+
+    dist = Math.hypot(newTop - currentTop, newLeft - currentLeft);
+    tries++;
+  } while ((overlap || dist < 80) && tries < 50);
+
+  btn.style.transition = 'top 0.3s ease, left 0.3s ease';
+  btn.style.top = newTop + 'px';
+  btn.style.left = newLeft + 'px';
+}
+
+
+    const imgs = [
+      'https://i.ibb.co/5xKZ5NqC/chibichibi.jpg',
+      'https://i.ibb.co/cS0qPv1s/manface1.png',
+      'https://i.ibb.co/RkZFNqtZ/282372383-839336137027702-6359041636924941217-n.png',
+      'https://i.ibb.co/S4kN0FP4/banana.png',
+      'https://i.ibb.co/1Y9zNYJM/skibidi.png',
+      'https://i.ibb.co/rWLrDFM/cat4.png',
+      'https://i.ibb.co/GQq0hqY5/cat3.png',
+      'https://i.ibb.co/nNCb9ZD7/cat2.png',
+      'https://i.ibb.co/67JJjvZP/cat1.png'
+    ];
+    for (let i = 0; i < 35; i++) {
+      let img = document.createElement('img');
+      img.src = imgs[Math.floor(Math.random() * imgs.length)];
+      img.classList.add('floating');
+      img.style.left = Math.random() * 100 + 'vw';
+      img.style.width = (50 + Math.random() * 50) + 'px';
+      img.style.animation = `float ${(5 + Math.random() * 10)}s linear infinite`;
+      img.style.transform = `rotate(${Math.random()*360}deg)`;
+      document.body.appendChild(img);
+    }
+  </script>
+</body>
+</html>
