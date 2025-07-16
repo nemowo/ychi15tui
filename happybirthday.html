@@ -28,6 +28,7 @@
       animation: pop 1s infinite alternate;
       position: relative;
       z-index: 2;
+      width: 80%;
     }
     @keyframes pop {
       0% { transform: scale(1); }
@@ -128,6 +129,16 @@
       z-index: 2;
       opacity: 0.6;
     }
+    .floating-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
   </style>
 </head>
 <body>
@@ -304,16 +315,20 @@ function escapeBtn() {
       'https://i.ibb.co/67JJjvZP/cat1.png',
       'https://i.ibb.co/cXVbgbWP/meme-6195988-1280.png'
     ];
-    for (let i = 0; i < 35; i++) {
-      let img = document.createElement('img');
-      img.src = imgs[Math.floor(Math.random() * imgs.length)];
-      img.classList.add('floating');
-      img.style.left = Math.random() * 100 + 'vw';
-      img.style.width = (50 + Math.random() * 50) + 'px';
-      img.style.animation = `float ${(5 + Math.random() * 10)}s linear infinite`;
-      img.style.transform = `rotate(${Math.random()*360}deg)`;
-      document.body.appendChild(img);
-    }
+const container = document.createElement('div');
+container.className = 'floating-container';
+document.body.appendChild(container);
+
+for (let i = 0; i < 30; i++) {
+  let img = document.createElement('img');
+  img.src = imgs[Math.floor(Math.random() * imgs.length)];
+  img.classList.add('floating');
+  img.style.left = Math.random() * 100 + 'vw';
+  img.style.width = (50 + Math.random() * 50) + 'px';
+  img.style.animation = `float ${(5 + Math.random() * 10)}s linear infinite`;
+  img.style.transform = `rotate(${Math.random()*360}deg)`;
+  container.appendChild(img);
+}
   </script>
 </body>
 </html>
